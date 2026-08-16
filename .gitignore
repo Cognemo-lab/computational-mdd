@@ -1,0 +1,25 @@
+# MATLAB generated files
+*.asv
+*.autosave
+*.m~
+slprj/
+codegen/
+
+# MATLAB preferences and test artifacts
+MATLABCrashDump.*
+matlab_crash_dump.*
+*.log
+*.prof
+
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*~
+
+# Local data and generated output
+data/local/
+outputs/
+results/
+figures/generated/
