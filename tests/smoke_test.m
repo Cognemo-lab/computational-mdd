@@ -5,6 +5,9 @@ setup = cognemo_setup_paths();
 
 assert(setup.tapasAvailable, 'Bundled TAPAS toolbox was not found.');
 assert(setup.spmAvailable, 'Bundled SPM12 toolbox was not found.');
+assert(setup.smithTutorialAvailable, ...
+    ['Smith active-inference tutorial was not found. Run: ' ...
+     'git submodule update --init --recursive']);
 
 entryPoints = {
     fullfile('HGF_tutorial', 'ModelsofPerception_tutorial_load_task.m')
@@ -13,6 +16,10 @@ entryPoints = {
     fullfile('HGF_tutorial', 'vnet_generate_learners.m')
     fullfile('Tutorial-active-inference-Tmaze', ...
         'Tutorial_active_inference (1).m')
+    fullfile('Tutorial-active-inference-Smith', ...
+        'Step_by_Step_AI_Guide.m')
+    fullfile('Tutorial-active-inference-Smith', ...
+        'Step_by_Step_Hierarchical_Model.m')
 };
 
 for fileIndex = 1:numel(entryPoints)

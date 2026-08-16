@@ -9,6 +9,8 @@ restoredefaultpath;
 projectRoot = fileparts(mfilename('fullpath'));
 tapasRoot = fullfile(projectRoot, 'Toolboxes', 'tapas');
 spmRoot = fullfile(projectRoot, 'Toolboxes', 'spm12');
+smithTutorialRoot = fullfile(projectRoot, ...
+    'Tutorial-active-inference-Smith');
 
 % Course code. Add tutorial-specific subdirectories where custom model and
 % plotting functions live, while keeping the bundled toolboxes separate.
@@ -17,6 +19,12 @@ addpath(fullfile(projectRoot, 'Utils'));
 addpath(fullfile(projectRoot, 'RepresentationalCode'));
 addpath(genpath(fullfile(projectRoot, 'HGF_tutorial')));
 addpath(fullfile(projectRoot, 'Tutorial-active-inference-Tmaze'));
+
+smithTutorialAvailable = isfile(fullfile(smithTutorialRoot, ...
+    'Step_by_Step_AI_Guide.m'));
+if smithTutorialAvailable
+    addpath(smithTutorialRoot);
+end
 
 if isfolder(tapasRoot)
     addpath(genpath(tapasRoot));
@@ -29,11 +37,14 @@ end
 setup = struct( ...
     'projectRoot', projectRoot, ...
     'tapasAvailable', isfolder(tapasRoot), ...
-    'spmAvailable', isfolder(spmRoot));
+    'spmAvailable', isfolder(spmRoot), ...
+    'smithTutorialAvailable', smithTutorialAvailable);
 
 fprintf('Computational MDD course paths configured.\n');
 fprintf('  TAPAS: %s\n', availability(setup.tapasAvailable));
 fprintf('  SPM12: %s\n', availability(setup.spmAvailable));
+fprintf('  Smith active-inference tutorial: %s\n', ...
+    availability(setup.smithTutorialAvailable));
 end
 
 function label = availability(isAvailable)

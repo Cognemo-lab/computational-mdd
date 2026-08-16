@@ -1,0 +1,3 @@
+[submodule "Tutorial-active-inference-Smith"]
+	path = Tutorial-active-inference-Smith
+	url = https://github.com/rssmith33/Active-Inference-Tutorial-Scripts.git
