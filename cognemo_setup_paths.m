@@ -9,8 +9,11 @@ restoredefaultpath;
 projectRoot = fileparts(mfilename('fullpath'));
 tapasRoot = fullfile(projectRoot, 'Toolboxes', 'tapas');
 spmRoot = fullfile(projectRoot, 'Toolboxes', 'spm12');
+spmDemRoot = fullfile(spmRoot, 'toolbox', 'DEM');
 smithTutorialRoot = fullfile(projectRoot, ...
     'Tutorial-active-inference-Smith');
+simpleSimulationRoot = fullfile(projectRoot, ...
+    'Tutorial-simple-model-simulations');
 
 % Course code. Add tutorial-specific subdirectories where custom model and
 % plotting functions live, while keeping the bundled toolboxes separate.
@@ -26,6 +29,12 @@ if smithTutorialAvailable
     addpath(smithTutorialRoot);
 end
 
+simpleSimulationAvailable = isfile(fullfile(simpleSimulationRoot, ...
+    'Tutorial_simple_model_simulations.m'));
+if simpleSimulationAvailable
+    addpath(genpath(simpleSimulationRoot));
+end
+
 if isfolder(tapasRoot)
     addpath(genpath(tapasRoot));
 end
@@ -34,17 +43,29 @@ if isfolder(spmRoot)
     addpath(spmRoot);
 end
 
+% Active-inference MDP routines are contained in SPM's DEM toolbox. Add this
+% one directory explicitly; adding every SPM subdirectory can shadow MATLAB
+% core functions.
+if isfolder(spmDemRoot)
+    addpath(spmDemRoot);
+end
+
 setup = struct( ...
     'projectRoot', projectRoot, ...
     'tapasAvailable', isfolder(tapasRoot), ...
     'spmAvailable', isfolder(spmRoot), ...
-    'smithTutorialAvailable', smithTutorialAvailable);
+    'spmDemAvailable', isfolder(spmDemRoot), ...
+    'smithTutorialAvailable', smithTutorialAvailable, ...
+    'simpleSimulationAvailable', simpleSimulationAvailable);
 
 fprintf('Computational MDD course paths configured.\n');
 fprintf('  TAPAS: %s\n', availability(setup.tapasAvailable));
 fprintf('  SPM12: %s\n', availability(setup.spmAvailable));
+fprintf('  SPM12 DEM toolbox: %s\n', availability(setup.spmDemAvailable));
 fprintf('  Smith active-inference tutorial: %s\n', ...
     availability(setup.smithTutorialAvailable));
+fprintf('  Simple model simulations: %s\n', ...
+    availability(setup.simpleSimulationAvailable));
 end
 
 function label = availability(isAvailable)

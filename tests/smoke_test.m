@@ -5,9 +5,12 @@ setup = cognemo_setup_paths();
 
 assert(setup.tapasAvailable, 'Bundled TAPAS toolbox was not found.');
 assert(setup.spmAvailable, 'Bundled SPM12 toolbox was not found.');
+assert(setup.spmDemAvailable, 'SPM12 DEM toolbox was not found.');
 assert(setup.smithTutorialAvailable, ...
     ['Smith active-inference tutorial was not found. Run: ' ...
      'git submodule update --init --recursive']);
+assert(setup.simpleSimulationAvailable, ...
+    'The simple model simulations tutorial was not found.');
 
 entryPoints = {
     fullfile('HGF_tutorial', 'ModelsofPerception_tutorial_load_task.m')
@@ -20,6 +23,8 @@ entryPoints = {
         'Step_by_Step_AI_Guide.m')
     fullfile('Tutorial-active-inference-Smith', ...
         'Step_by_Step_Hierarchical_Model.m')
+    fullfile('Tutorial-simple-model-simulations', ...
+        'Tutorial_simple_model_simulations.m')
 };
 
 for fileIndex = 1:numel(entryPoints)
@@ -31,6 +36,8 @@ assert(exist('tapas_fitModel', 'file') == 2, ...
     'TAPAS functions are not available on the MATLAB path.');
 assert(exist('spm', 'file') == 2, ...
     'The SPM12 root is not available on the MATLAB path.');
+assert(exist('spm_MDP_check', 'file') == 2, ...
+    'The SPM12 DEM toolbox is not available on the MATLAB path.');
 
 fprintf('Smoke test passed: setup, toolboxes, and %d tutorials found.\n', ...
     numel(entryPoints));

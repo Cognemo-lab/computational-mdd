@@ -48,6 +48,7 @@ run(fullfile('tests', 'smoke_test.m'))
 
 | Topic | Entry point | Main ideas |
 | --- | --- | --- |
+| Simple model simulations | `Tutorial-simple-model-simulations/Tutorial_simple_model_simulations.m` | RL, HGF, and active inference using reversal and T-maze tasks |
 | Models of perception | `HGF_tutorial/ModelsofPerception_tutorial_load_task.m` | Hierarchical beliefs, volatility, ideal-observer simulation, model inversion |
 | Reinforcement learning | `HGF_tutorial/RL_tutorial_load_task.m` | HGF and Rescorla-Wagner learning, parameter recovery, belief trajectories |
 | Generating a volatile task | `HGF_tutorial/vnet_tutorial_generate_task.m` | Experimental design, simulation, inversion, precision-weighted prediction errors |
@@ -69,6 +70,7 @@ short equation exercises, see
 ```text
 computational-mdd/
 ├── HGF_tutorial/                  HGF and reinforcement-learning tutorials
+├── Tutorial-simple-model-simulations/  Introductory comparative tutorial
 ├── Tutorial-active-inference-Tmaze/  Active-inference tutorial
 ├── Tutorial-active-inference-Smith/  Pinned Smith–Friston–Whyte submodule
 ├── RepresentationalCode/          Shared plotting code
@@ -92,7 +94,8 @@ Keep student-facing entry points readable and put reusable logic in a local
   `cognemo_setup_paths`.
 - **MATLAB reports a name conflict:** run `restoredefaultpath`, then rerun
   `cognemo_setup_paths`. The setup function deliberately adds only the SPM12
-  root, not all of its subdirectories.
+  root and its active-inference `toolbox/DEM` directory, not every SPM
+  subdirectory.
 - **The repository is incomplete:** verify that `Toolboxes/tapas` and
   `Toolboxes/spm12` exist and run `git submodule update --init --recursive`.
 
